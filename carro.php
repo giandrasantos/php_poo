@@ -15,7 +15,11 @@ class Carro {
         return $this->modelo;
     }
     public function setVelocidade($novaVelocidade){
-        
+        if($novaVelocidade >=0 && $novaVelocidade < 201){
+            $this->velocidade = $novaVelocidade;
+        } else {
+            $this->velocidade = 'ERRO: VELOCIDADE IMPRÓPRIA';
+        }
     }
 }
 
@@ -23,9 +27,12 @@ class Carro {
 $meuCarro = new Carro("Senai-Mobile", 0);
 
 // O desastre: alteração direta sem validação
-$meuCarro->velocidade = 200; // Velocidade de foguete?
-$meuCarro->velocidade = 0;   // Carro andando no tempo?
+$meuCarro->setVelocidade(190);   // Carro andando no tempo?
 
-echo "Modelo: " . $meuCarro->modelo . "<br>";
-echo "Velocidade atual: " . $meuCarro->velocidade . " km/h";
+echo "Modelo: " . $meuCarro->getModelo() . "<br>";
+if ($meuCarro->getVelocidade()== "ERRO: VELOCIDADE IMPRÓPRIA"){
+    echo ''. $meuCarro->getVelocidade();
+} else {
+    echo "Velocidade atual: " . $meuCarro->getVelocidade() . " km/h";
+};
 ?>
